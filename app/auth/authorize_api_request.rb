@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Authorizes further requests
 class AuthorizeApiRequest
   def initialize(headers = {})
     @headers = headers
@@ -24,7 +27,6 @@ class AuthorizeApiRequest
 
     # handle user not found
   rescue ActiveRecord::RecordNotFound => e
-
     # raise custom error
     raise(
       ExceptionHandler::InvalidToken,
@@ -39,9 +41,9 @@ class AuthorizeApiRequest
 
   # check for token in `Authorization` header
   def http_auth_header
-    if headers['Authorization'].present?
-      return headers['Authorization'].split(' ').last
-    end
-      raise(ExceptionHandler::MissingToken, Message.missing_token)
+    auth_headers = headers['Authorization']
+    return auth_headers.split(' ').last if auth_headers.present?
+
+    raise(ExceptionHandler::MissingToken, Message.missing_token)
   end
 end

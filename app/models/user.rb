@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
   has_one :account, dependent: :destroy
@@ -11,13 +13,12 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8 },
     allow_nil: true, on: :create
 
-  scope :by_name, -> name {joins(:account).where("account.name = ?", name)}
-  scope :by_last_name, -> last_name {joins(:account).where("account.last_name = ?", last_name)}
-  scope :by_email, -> email { where(email: email)}
-  scope :by_gender, -> gender {joins(:account).where("account.gender = ?", gender)}
+  scope :by_name, ->(name) { joins(:account).where('accounts.name = ?', name) }
+  scope :by_last_name, ->(last_name) { joins(:account).where('accounts.last_name = ?', last_name) }
+  scope :by_email, ->(email) { where(email: email) }
+  scope :by_gender, ->(gender) { joins(:account).where('accounts.gender = ?', gender) }
 
   def full_name
     "#{account.name.capitalize} #{account.last_name.capitalize}"
   end
-
 end

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ApiVersion
   attr_reader :version, :default
 
-  def initialize(version, default = false)
+  def initialize(version, default = nil)
     @version = version
     @default = default
   end
@@ -16,6 +18,6 @@ class ApiVersion
   def check_headers(headers)
     # check version from Accept headers; expect custom media type `todos`
     accept = headers[:accept]
-    accept && accept.include?("application/vnd.checkin.#{version}+json")
+    accept&.include?("application/vnd.checkin.#{version}+json")
   end
 end

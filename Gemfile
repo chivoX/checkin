@@ -31,7 +31,6 @@ gem 'rack-cors', :require => 'rack/cors'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'rswag', '~> 2.0', '>= 2.0.5'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
@@ -39,8 +38,8 @@ gem 'rswag', '~> 2.0', '>= 2.0.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
-  #Strategies for cleaning databases.
+  gem 'rspec-rails', '3.8'
+  # Strategies for cleaning databases.
   gem 'database_cleaner', '~> 1.7'
   # provides integration between factory_bot and rails 4.2 or newer
   gem 'factory_bot_rails', '~> 5.0', '>= 5.0.2'
@@ -48,11 +47,19 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
 end
 
+group :test do
+  gem 'airborne', '~> 0.3.4'
+end
+
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop', '~> 0.76.0'
+  gem 'simplecov', '~> 0.17.1'
+  gem 'bullet', '~> 6.0', '>= 6.0.2'
+  gem 'reek', '~> 5.4'
 end
 
 

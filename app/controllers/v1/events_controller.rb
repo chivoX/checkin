@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module V1
   class EventsController < ApplicationController
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_event, only: %i[show update destroy]
 
     def index
       @events = event_query.paginate(page: params[:page])
@@ -8,7 +10,7 @@ module V1
     end
 
     def create
-      event = Event.create(user_params)
+      event = Event.create(event_params)
       json_response(event, :created)
     end
 
@@ -18,11 +20,12 @@ module V1
 
     def update
       @event.update!(event_params)
-      json_response(@user)
+      json_response(@event)
     end
 
     def destroy
       @event.destroy
+      head :ok
     end
 
     private
@@ -32,7 +35,7 @@ module V1
     end
 
     def event_query
-      current_user.kind_of?(Admin) ? Event.all : Event.where(user: current_user)
+      current_user.is_a?(Admin) ? Event.all : Event.where(user: current_user)
     end
 
     def set_event

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'will_paginate/array'
 
 module V1
@@ -12,7 +14,7 @@ module V1
     private
 
     def report_params
-      params.permit(:amount)
+      params.permit(:limit)
     end
 
     def fetch_report_data

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module V1
   class UsersController < ApplicationController
     has_scope :by_name
@@ -6,7 +8,7 @@ module V1
     has_scope :by_gender
 
     before_action :admin?
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_user, only: %i[show update destroy]
 
     def index
       @users = user_account_query.paginate(page: params[:page])
@@ -29,20 +31,21 @@ module V1
 
     def destroy
       @user.destroy
+      head :ok
     end
 
     private
 
     def user_params
       params.permit(
-	:email,
-	:password,
-	:password_confirmation,
-	account_attributes: [
-	  :name,
-	  :last_name,
-          :gender
-	]
+        :email,
+        :password,
+        :password_confirmation,
+        account_attributes: %i[
+          name
+          last_name
+          gender
+        ]
       )
     end
 

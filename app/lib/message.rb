@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Message
   def self.not_found(record = 'record')
     "Dislcupa, #{record} no encontrado."
