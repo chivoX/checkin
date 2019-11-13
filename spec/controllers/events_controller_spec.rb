@@ -43,21 +43,6 @@ RSpec.describe V1::EventsController, type: :controller do
     end
   end
 
-  describe 'PUT update' do
-    let(:event) { create(:event) }
-    it 'Update Event' do
-      put :update, params: { checkout: Time.now + 10.hours, id: event.id }
-      expect_status '200'
-      expect_json_types('data',
-                        type: :string,
-                        attributes: {
-                          checkin: :date,
-                          checkout: :date,
-                          total_worked_hours: :integer
-                        })
-    end
-  end
-
   describe 'GET show' do
     let(:event) { create(:event) }
     it 'Retrieves an Event' do
@@ -77,6 +62,22 @@ RSpec.describe V1::EventsController, type: :controller do
       expect_status '404'
     end
   end
+
+  describe 'PUT update' do
+    let(:event) { create(:event) }
+    it 'Update Event' do
+      put :update, params: { checkout: Time.now + 10.hours, id: event.id }
+      expect_status '200'
+      expect_json_types('data',
+                        type: :string,
+                        attributes: {
+                          checkin: :date,
+                          checkout: :date,
+                          total_worked_hours: :integer
+                        })
+    end
+  end
+
 
   describe 'DELETE destroy' do
     let(:event) { create(:event) }

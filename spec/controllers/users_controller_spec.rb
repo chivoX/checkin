@@ -31,7 +31,6 @@ RSpec.describe V1::UsersController, type: :controller do
                           }
                         })
     end
-
   end
 
   describe 'GET index scoped queries' do
@@ -147,7 +146,15 @@ RSpec.describe V1::UsersController, type: :controller do
 
   describe 'PUT update' do
     it 'Update User' do
-      put :update, params: { id: User.first, email: 'test@email.com', account_attributes: { name: 'new', last_name: 'name', gender: 'female' } }
+      put :update, params: {
+        id: User.first,
+        email: 'test@email.com',
+        account_attributes: {
+          name: 'new',
+          last_name: 'name',
+          gender: 'female'
+        }
+      }
       expect_status '200'
       expect_json_types('data',
                         id: :string,
