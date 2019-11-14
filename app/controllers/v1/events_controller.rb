@@ -10,7 +10,7 @@ module V1
     end
 
     def create
-      event = Event.create(event_params)
+      event = Event.create!(event_params)
       json_response(event, :created)
     end
 
@@ -31,7 +31,7 @@ module V1
     private
 
     def event_params
-      params.permit(:checkin, :checkout)
+      params.permit(:checkin, :checkout, :user_id)
     end
 
     def event_query

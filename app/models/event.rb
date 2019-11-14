@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   validates :checkin, :user_id, presence: true
 
   def total_worked_hours
+    return nil if checkin.nil? || checkout.nil?
+
     ((checkout.to_time - checkin.to_time) / 1.hours).to_i
   end
 end

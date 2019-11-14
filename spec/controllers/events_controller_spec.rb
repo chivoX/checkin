@@ -41,6 +41,14 @@ RSpec.describe V1::EventsController, type: :controller do
                           total_worked_hours: :integer
                         })
     end
+
+    it 'rejects an invalid request' do
+      post :create, params: {
+        user_id: user.id
+      }
+      expect_status '422'
+      expect_json(message: "Validation failed: Checkin can't be blank")
+    end
   end
 
   describe 'GET show' do
@@ -76,8 +84,12 @@ RSpec.describe V1::EventsController, type: :controller do
                           total_worked_hours: :integer
                         })
     end
-  end
 
+    it 'Update  an unexistent Event' do
+      delete :update, params: { id: 'invalid' }
+      expect_status '404'
+    end
+  end
 
   describe 'DELETE destroy' do
     let(:event) { create(:event) }

@@ -21,6 +21,14 @@ RSpec.describe Event, type: :model do
           expect(event.total_worked_hours).to eq(3)
         end
       end
+
+      context 'when checkin or checkout arent present' do
+        let(:event) { build(:event, checkin: nil, checkout: nil) }
+
+        it 'returns nil' do
+          expect(event.total_worked_hours).to be_nil
+        end
+      end
     end
   end
 end

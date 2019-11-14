@@ -16,7 +16,7 @@ module V1
     end
 
     def create
-      user = User.create(user_params)
+      user = User.create!(user_params)
       json_response(user, :created)
     end
 

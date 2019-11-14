@@ -142,6 +142,14 @@ RSpec.describe V1::UsersController, type: :controller do
                           }
                         })
     end
+
+    it 'rejects an invalid request' do
+      post :create, params: {
+        email: 'invalid request'
+      }
+      expect_status '422'
+      expect_json(message: "Validation failed: Password can't be blank, Email is invalid")
+    end
   end
 
   describe 'PUT update' do
@@ -171,6 +179,11 @@ RSpec.describe V1::UsersController, type: :controller do
                             updated_at: :date
                           }
                         })
+    end
+
+    it 'Update  an unexistent Event' do
+      delete :update, params: { id: 'invalid' }
+      expect_status '404'
     end
   end
 

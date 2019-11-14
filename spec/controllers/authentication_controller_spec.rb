@@ -19,5 +19,14 @@ RSpec.describe AuthenticationController, type: :controller do
         user_id: :integer
       )
     end
+
+    it 'Takes wrong credentials' do
+      post :authenticate, params: {
+        email: 'invalid user',
+        password: '123456789'
+      }
+      expect_status '401'
+      expect_json(message: 'Invalid Credentials')
+    end
   end
 end
