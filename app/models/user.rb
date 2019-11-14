@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Users credentials are stored here, also keeps relations with
+# accounts and events
 class User < ApplicationRecord
   has_secure_password
   has_one :account, dependent: :destroy
