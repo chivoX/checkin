@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
@@ -12,13 +14,12 @@ RSpec.describe Event, type: :model do
 
   describe 'Instance methods' do
     context '#total_worked_hours' do
-
       context 'when checkin and checkout are present' do
-	let(:event) { create(:event) }
+        let(:event) { create(:event) }
 
-	it 'returns the calculated worked hours' do
-	  expect(event.total_worked_hours).to eq(3)
-	end
+        it 'returns the calculated worked hours' do
+          expect(event.total_worked_hours).to eq(3)
+        end
       end
     end
   end

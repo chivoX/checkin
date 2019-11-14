@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'will_paginate/array'
+
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   include Response

@@ -23,7 +23,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             created_at: :date,
@@ -35,8 +35,8 @@ RSpec.describe V1::UsersController, type: :controller do
 
   describe 'GET index scoped queries' do
     let(:user) { create(:user_with_account) }
-    it 'Retrieves users by name' do
-      get :index, params: { by_name: user.account.name }
+    it 'Retrieves users by first_name' do
+      get :index, params: { by_first_name: user.account.first_name }
       expect_status '200'
       expect_json_types('data.*',
                         id: :string,
@@ -45,7 +45,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             created_at: :date,
@@ -64,7 +64,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             created_at: :date,
@@ -83,7 +83,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             created_at: :date,
@@ -102,7 +102,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             created_at: :date,
@@ -120,7 +120,7 @@ RSpec.describe V1::UsersController, type: :controller do
         password: '123456789',
         password_confirmation: '123456789',
         account_attributes: {
-          name: 'pepe',
+          first_name: 'pepe',
           last_name: 'locuaz',
           gender: 'male'
         }
@@ -133,7 +133,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             user_id: :integer,
@@ -150,7 +150,7 @@ RSpec.describe V1::UsersController, type: :controller do
         id: User.first,
         email: 'test@email.com',
         account_attributes: {
-          name: 'new',
+          first_name: 'new',
           last_name: 'name',
           gender: 'female'
         }
@@ -163,7 +163,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             user_id: :integer,
@@ -186,7 +186,7 @@ RSpec.describe V1::UsersController, type: :controller do
                           email: :string,
                           account: {
                             id: :integer,
-                            name: :string,
+                            first_name: :string,
                             last_name: :string,
                             gender: :string,
                             user_id: :integer,

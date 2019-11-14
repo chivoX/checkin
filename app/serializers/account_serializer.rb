@@ -4,5 +4,5 @@ class AccountSerializer
   include FastJsonapi::ObjectSerializer
   belongs_to :user
 
-  attributes :id, :name, :last_namea, :gender
+  attributes :id, :first_name, :last_name, :gender
 end

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'will_paginate/array'
-
 module V1
   class ReportsController < ApplicationController
     before_action :admin?

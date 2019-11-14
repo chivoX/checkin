@@ -15,12 +15,12 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 8 },
     allow_nil: true, on: :create
 
-  scope :by_name, ->(name) { joins(:account).where('accounts.name = ?', name) }
+  scope :by_first_name, ->(first_name) { joins(:account).where('accounts.first_name = ?', first_name) }
   scope :by_last_name, ->(last_name) { joins(:account).where('accounts.last_name = ?', last_name) }
   scope :by_email, ->(email) { where(email: email) }
   scope :by_gender, ->(gender) { joins(:account).where('accounts.gender = ?', gender) }
 
   def full_name
-    "#{account.name.capitalize} #{account.last_name.capitalize}"
+    "#{account.first_name.capitalize} #{account.last_name.capitalize}"
   end
 end

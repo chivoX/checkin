@@ -2,7 +2,7 @@
 
 module V1
   class UsersController < ApplicationController
-    has_scope :by_name
+    has_scope :by_first_name
     has_scope :by_last_name
     has_scope :by_email
     has_scope :by_gender
@@ -42,7 +42,7 @@ module V1
         :password,
         :password_confirmation,
         account_attributes: %i[
-          name
+          first_name
           last_name
           gender
         ]
