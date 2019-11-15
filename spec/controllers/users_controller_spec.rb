@@ -38,18 +38,10 @@ RSpec.describe V1::UsersController, type: :controller do
     it 'Retrieves users by first_name' do
       get :index, params: { by_first_name: user.account.first_name }
       expect_status '200'
-      expect_json_types('data.*',
-                        id: :string,
-                        type: :string,
+      expect_json('data.*',
                         attributes: {
-                          email: :string,
                           account: {
-                            id: :integer,
-                            first_name: :string,
-                            last_name: :string,
-                            gender: :string,
-                            created_at: :date,
-                            updated_at: :date
+                            first_name: 'Test'
                           }
                         })
     end
@@ -57,18 +49,10 @@ RSpec.describe V1::UsersController, type: :controller do
     it 'Retrieves users by last name' do
       get :index, params: { by_last_name: user.account.last_name }
       expect_status '200'
-      expect_json_types('data.*',
-                        id: :string,
-                        type: :string,
+      expect_json('data.*',
                         attributes: {
-                          email: :string,
                           account: {
-                            id: :integer,
-                            first_name: :string,
-                            last_name: :string,
-                            gender: :string,
-                            created_at: :date,
-                            updated_at: :date
+                            last_name: 'Tester'
                           }
                         })
     end
@@ -76,37 +60,16 @@ RSpec.describe V1::UsersController, type: :controller do
     it 'Retrieves users by email' do
       get :index, params: { by_email: user.email }
       expect_status '200'
-      expect_json_types('data.*',
-                        id: :string,
-                        type: :string,
-                        attributes: {
-                          email: :string,
-                          account: {
-                            id: :integer,
-                            first_name: :string,
-                            last_name: :string,
-                            gender: :string,
-                            created_at: :date,
-                            updated_at: :date
-                          }
-                        })
+      expect_json('data.*', attributes: { email: user.email })
     end
 
     it 'Retrieves users by gender' do
       get :index, params: { by_gender: user.account.gender }
       expect_status '200'
-      expect_json_types('data.*',
-                        id: :string,
-                        type: :string,
+      expect_json('data.*',
                         attributes: {
-                          email: :string,
                           account: {
-                            id: :integer,
-                            first_name: :string,
-                            last_name: :string,
-                            gender: :string,
-                            created_at: :date,
-                            updated_at: :date
+                            gender: 'Male'
                           }
                         })
     end

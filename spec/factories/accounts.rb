@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :account do
-    sequence(:first_name) { |n| "TestUser #{n}" }
+    first_name { 'Test' }
     last_name { 'Tester' }
     gender { 'Male' }
     user
