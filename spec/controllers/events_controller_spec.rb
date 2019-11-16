@@ -56,7 +56,7 @@ RSpec.describe V1::EventsController, type: :controller do
                         })
     end
 
-    it 'creates an Event with a checkout date before the checkin date' do
+    it 'rejects creatign an Event with a checkout date before the checkin date' do
       post :create, params: {
         checkin: Time.now,
         checkout: Time.now - 1.hour,

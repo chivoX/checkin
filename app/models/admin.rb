@@ -9,8 +9,8 @@ class Admin < ApplicationRecord
 
   validates :password, presence: true, length: { minimum: 8 },
     allow_nil: true, on: :create
+
   def full_name
     email
   end
-
 end

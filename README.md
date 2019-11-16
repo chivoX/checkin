@@ -46,6 +46,28 @@ In order to run test, it is just a matter to run the following command:
   $ rspec spec
 ``
 
+# Testing Methodology
+
+So an easy way to test this out would be by using this admin username
+
+``
+admin@tested.com / 123456789
+``
+
+and user credentials
+``
+test1@tested.com / 123456789
+``
+
+like this
+``
+curl --include \
+     --request POST \
+     'http://localhost:3000/auth/login?email=admin%40asda.com&password=123456789'
+``
+
+You can see more on the documentation on the Apiary docs.
+
 # Endpoints Documentation
 
 * [API Blueprints](https://checkin11.docs.apiary.io)
