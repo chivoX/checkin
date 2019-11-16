@@ -61,6 +61,7 @@ group :development do
   gem 'bullet', '~> 6.0', '>= 6.0.2'
   gem 'reek', '~> 5.4'
   gem 'lol_dba', '~> 2.1', '>= 2.1.8'
+  gem 'brakeman', '~> 4.7', '>= 4.7.1'
 end
 
 

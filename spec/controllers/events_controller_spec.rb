@@ -42,6 +42,30 @@ RSpec.describe V1::EventsController, type: :controller do
                         })
     end
 
+    it 'creates an Event withouth a checkout' do
+      post :create, params: {
+        checkin: Time.now,
+        user_id: user.id
+      }
+      expect_status '201'
+      expect_json_types('data',
+                        type: :string,
+                        attributes: {
+                          checkin: :date,
+                          total_worked_hours: :null
+                        })
+    end
+
+    it 'creates an Event with a checkout date before the checkin date' do
+      post :create, params: {
+        checkin: Time.now,
+        checkout: Time.now - 1.hour,
+        user_id: user.id
+      }
+      expect_status '422'
+      expect_json(message: 'Validation failed: Checkout must be after the checkin date' )
+    end
+
     it 'rejects an invalid request' do
       post :create, params: {
         user_id: user.id
