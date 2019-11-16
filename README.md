@@ -55,11 +55,13 @@ admin@tested.com / 123456789
 ``
 
 and user credentials
+
 ``
 test1@tested.com / 123456789
 ``
 
 like this
+
 ``
 curl --include \
      --request POST \
